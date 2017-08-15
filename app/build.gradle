@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-def AAVersion = '4.2.0' // Android Annotation Version
 apply plugin: 'realm-android'
+apply plugin: 'me.tatarka.retrolambda'
+def AAVersion = '4.2.0'
 
 buildscript {
     repositories {
@@ -11,6 +12,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
     }
 }
 
@@ -24,6 +26,7 @@ apt {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven { url 'https://jitpack.io' }
 }
 
 android {
@@ -61,6 +64,10 @@ android {
     lintOptions {
         abortOnError false
         lintConfig file('lint.xml')
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
