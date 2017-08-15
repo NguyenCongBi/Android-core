@@ -22,10 +22,11 @@ public final class PermissionUtil {
     }
 
     public static void onCheckPermission(@NonNull Activity activity, int requestCode, @NonNull String permissionName) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return;
         }
         if (ContextCompat.checkSelfPermission(activity, permissionName) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{permissionName}, requestCode);
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permissionName)) {
                 Snackbar.make(activity.findViewById(android.R.id.content),
                         "Please Grant Permissions",
