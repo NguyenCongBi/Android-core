@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -31,7 +32,9 @@ public final class PermissionUtil {
                 Snackbar.make(activity.findViewById(android.R.id.content),
                         "Please Grant Permissions",
                         Snackbar.LENGTH_INDEFINITE).setAction("ENABLE",
-                        v -> ActivityCompat.requestPermissions(activity, new String[]{permissionName}, requestCode)).show();
+                        (View v) -> {
+                            ActivityCompat.requestPermissions(activity, new String[]{permissionName}, requestCode);
+                        }).show();
                 Log.d(TAG, "onCheckPermission: ");
                 Toast.makeText(activity, "shut show", Toast.LENGTH_SHORT).show();
             } else {
