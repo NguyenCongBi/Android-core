@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Translation</string>
+    <string name="app_name">Android Core</string>
     <string name="valid_error_retrofit_network_error">Error</string>
 </resources>

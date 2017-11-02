@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-def AAVersion = '4.2.0' // Android Annotation Version
 apply plugin: 'realm-android'
+apply plugin: 'me.tatarka.retrolambda'
+def AAVersion = '4.2.0'
 
 buildscript {
     repositories {
@@ -11,6 +12,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
     }
 }
 
@@ -24,6 +26,7 @@ apt {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven { url 'https://jitpack.io' }
 }
 
 android {
@@ -62,12 +65,17 @@ android {
         abortOnError false
         lintConfig file('lint.xml')
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.android.support:cardview-v7:25.1.0'
     compile 'com.android.support:support-v13:25.1.0'
     compile 'com.android.support:design:25.1.0'
     compile 'com.google.android.gms:play-services-analytics:10.2.0'
